@@ -1,4 +1,45 @@
-document.addEventListener("DOMContentLoaded", () => {
+// ...existing code...
+
+function createActivityCard(activity) {
+    // ...existing code...
+    const card = document.createElement('div');
+    card.className = 'activity-card';
+
+    // ...existing code para título, descripción, etc...
+
+    // Sección de participantes
+    const participantsSection = document.createElement('div');
+    participantsSection.className = 'participants-section';
+
+    const participantsTitle = document.createElement('h4');
+    participantsTitle.textContent = 'Participantes';
+
+    const participantsList = document.createElement('ul');
+    participantsList.className = 'participants-list';
+
+    if (activity.participants && activity.participants.length > 0) {
+        activity.participants.forEach(name => {
+            const li = document.createElement('li');
+            li.textContent = name;
+            participantsList.appendChild(li);
+        });
+    } else {
+        const li = document.createElement('li');
+        li.textContent = 'Nadie se ha inscrito aún.';
+        li.className = 'no-participants';
+        participantsList.appendChild(li);
+    }
+
+    participantsSection.appendChild(participantsTitle);
+    participantsSection.appendChild(participantsList);
+
+    card.appendChild(participantsSection);
+
+    // ...existing code para agregar el card al DOM...
+    return card;
+}
+
+// ...existing code...document.addEventListener("DOMContentLoaded", () => {
   const activitiesList = document.getElementById("activities-list");
   const activitySelect = document.getElementById("activity");
   const signupForm = document.getElementById("signup-form");
